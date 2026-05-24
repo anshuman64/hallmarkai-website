@@ -574,90 +574,103 @@
       color: var(--text-body);
     }
 
-    /* ── WORKSHOPS ── */
-    .workshop-tracks {
+    /* ── WORKSHOPS / COURSE CARDS ── */
+    .course-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
-    .track {
+    .course-card {
       padding: 2rem;
       background: rgba(244, 244, 242, 0.03);
       border: 1px solid rgba(244, 244, 242, 0.06);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s;
     }
 
-    .track-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+    .course-card:hover {
+      border-color: rgba(244, 244, 242, 0.14);
+      background: rgba(244, 244, 242, 0.05);
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--yellow);
+    }
+
+    .course-tags {
       display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border: 1px solid;
+    }
+
+    .course-tag--community {
+      color: var(--forest);
+      border-color: rgba(31, 94, 74, 0.35);
+    }
+
+    .course-tag--smallbiz {
+      color: var(--teal);
+      border-color: rgba(15, 118, 110, 0.35);
+    }
+
+    .course-tag--enterprise {
+      color: var(--copper);
+      border-color: rgba(165, 84, 28, 0.35);
+    }
+
+    .course-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+      color: var(--off-white);
+    }
+
+    .course-desc {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      flex-grow: 1;
+    }
+
+    .course-cta {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    .track-label::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      display: inline-block;
-    }
-
-    .track:nth-child(1) .track-label {
-      color: var(--forest);
-    }
-
-    .track:nth-child(1) .track-label::before {
-      background: var(--forest);
-    }
-
-    .track:nth-child(2) .track-label {
-      color: var(--teal);
-    }
-
-    .track:nth-child(2) .track-label::before {
-      background: var(--teal);
-    }
-
-    .track:nth-child(3) .track-label {
-      color: var(--copper);
-    }
-
-    .track:nth-child(3) .track-label::before {
-      background: var(--copper);
-    }
-
-    .track h3 {
-      font-size: 1.05rem;
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
+      color: var(--yellow);
+      text-decoration: none;
+      transition: opacity 0.2s;
     }
 
-    .track-desc {
-      font-family: 'Lora', serif;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: var(--text-body);
-      margin-bottom: 1.25rem;
+    .course-cta:hover {
+      opacity: 0.8;
     }
 
-    .topic-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .topic-list li {
-      font-size: 0.82rem;
-      color: var(--off-white);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(244, 244, 242, 0.06);
-    }
-
-    .topic-list li:last-child {
-      border-bottom: none;
+    .course-cta svg {
+      flex-shrink: 0;
     }
 
     .workshop-note {
@@ -849,8 +862,8 @@
         padding: 1.75rem;
       }
 
-      .workshop-tracks {
-        grid-template-columns: 1fr;
+      .course-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .fox-grid {
@@ -942,6 +955,10 @@
       }
 
       .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .course-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1063,22 +1080,22 @@
       border-bottom: 1px solid rgba(30, 31, 35, 0.05);
     }
 
-    .section-light .track {
+    .section-light .course-card {
       background: rgba(30, 31, 35, 0.02);
       border: 1px solid rgba(30, 31, 35, 0.06);
     }
 
-    .section-light .track h3 {
+    .section-light .course-card:hover {
+      border-color: rgba(30, 31, 35, 0.14);
+      background: rgba(30, 31, 35, 0.04);
+    }
+
+    .section-light .course-card h3 {
       color: var(--charcoal);
     }
 
-    .section-light .track-desc {
+    .section-light .course-desc {
       color: var(--text-body-light);
-    }
-
-    .section-light .topic-list li {
-      color: var(--charcoal);
-      border-bottom: 1px solid rgba(30, 31, 35, 0.06);
     }
 
     .section-light .workshop-note p {
@@ -1342,62 +1359,59 @@
     <div class="section-label label-yellow">AI Education</div>
     <div class="section-title">Workshops and courses for every level</div>
     <p class="section-subtitle section-subtitle-light">From AI literacy for first-time users to agentic system design
-      for engineering teams. All workshops are available for in-person or virtual delivery across Northeast Wisconsin.</p>
+      for engineering teams. All courses are available for in-person or virtual delivery across Northeast Wisconsin.</p>
 
-    <div class="workshop-tracks">
-      <!-- Community Track -->
-      <div class="track">
-        <div class="track-label">Community</div>
-        <h3>Understand AI</h3>
-        <p class="track-desc">Plain-language education for residents, students, educators, parents, and civic leaders.
-        </p>
-        <ul class="topic-list">
-          <li>How AI Works</li>
-          <li>AI Use in the Real World</li>
-          <li>How to Use ChatGPT, Claude, Gemini</li>
-          <li>AI Safety, Bias &amp; Hallucinations</li>
-          <li>AI for Everyday Life</li>
-          <li>AI, Energy &amp; Data Centers</li>
-          <li>AI and the Future of Education</li>
-          <li>Human Judgment in the Age of AI</li>
-        </ul>
+    <div class="course-grid">
+
+      <!-- Course 1: What AI Is -->
+      <div class="course-card">
+        <div class="course-tags">
+          <span class="course-tag course-tag--community">Community</span>
+        </div>
+        <h3>What AI Is and How AI Works</h3>
+        <p class="course-desc">A plain-language introduction to artificial intelligence — what it is, what it isn't, how large language models predict text, the history from ImageNet to agentic AI, and where AI shows up in everyday life from Google Search to self-driving cars.</p>
+        <a href="#" class="course-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Free PDF
+        </a>
       </div>
 
-      <!-- Small Business Track -->
-      <div class="track">
-        <div class="track-label">Small Business</div>
-        <h3>Apply AI</h3>
-        <p class="track-desc">Practical tools and workflows for local businesses, nonprofits, and professional services.
-        </p>
-        <ul class="topic-list">
-          <li>AI for Small Business Owners</li>
-          <li>AI for Marketing &amp; Social Media</li>
-          <li>AI for Sales &amp; Customer Follow-Up</li>
-          <li>Building AI-Powered Workflows</li>
-          <li>AI for Bookkeeping &amp; Admin</li>
-          <li>AI for Restaurants &amp; Retail</li>
-          <li>Choosing the Right AI Tools</li>
-          <li>AI for Proposals &amp; Invoices</li>
-        </ul>
+      <!-- Course 2: How to Use ChatGPT, Claude, and Gemini -->
+      <div class="course-card">
+        <div class="course-tags">
+          <span class="course-tag course-tag--community">Community</span>
+        </div>
+        <h3>How to Use ChatGPT, Claude, and Gemini</h3>
+        <p class="course-desc">Hands-on guidance for the three leading AI assistants. Learn prompt engineering fundamentals, how to evaluate and verify AI outputs, when to use each tool, and practical workflows for writing, research, planning, and everyday productivity.</p>
       </div>
 
-      <!-- Enterprise Track -->
-      <div class="track">
-        <div class="track-label">Enterprise</div>
-        <h3>Operationalize AI</h3>
-        <p class="track-desc">Strategy, governance, and implementation for executives, IT leaders, and engineering
-          teams.</p>
-        <ul class="topic-list">
-          <li>AI Strategy for Executives</li>
-          <li>AI Readiness Assessment</li>
-          <li>AI Governance &amp; Risk Management</li>
-          <li>Measuring ROI from AI</li>
-          <li>Agentic AI &amp; Multi-Agent Systems</li>
-          <li>AI Engineering &amp; APIs</li>
-          <li>Build vs. Buy AI Decisions</li>
-          <li>AI Vendor Evaluation</li>
-        </ul>
+      <!-- Course 3: Public Issues Related to AI -->
+      <div class="course-card">
+        <div class="course-tags">
+          <span class="course-tag course-tag--community">Community</span>
+        </div>
+        <h3>Public Issues Related to AI</h3>
+        <p class="course-desc">An accessible look at the questions that matter most — AI and jobs, education, politics, cybersecurity, environmental impact, energy and data centers, AGI, regulation, and what communities can do to shape how AI is adopted locally.</p>
       </div>
+
+      <!-- Course 4: Operationalizing AI for Enterprises -->
+      <div class="course-card">
+        <div class="course-tags">
+          <span class="course-tag course-tag--enterprise">Enterprise</span>
+        </div>
+        <h3>Operationalizing AI for Enterprises</h3>
+        <p class="course-desc">Move beyond pilots to production. Covers AI strategy and roadmap design, readiness assessments, governance and risk frameworks, use case prioritization, build-vs-buy decisions, vendor evaluation, agentic workflows, and measuring ROI against business outcomes.</p>
+      </div>
+
+      <!-- Course 5: Level Up Your AI for Small Businesses -->
+      <div class="course-card">
+        <div class="course-tags">
+          <span class="course-tag course-tag--smallbiz">Small Business</span>
+        </div>
+        <h3>Level Up Your AI for Small Businesses</h3>
+        <p class="course-desc">Go beyond basic chat. Learn to use AI for marketing and social media content, customer follow-up, bookkeeping and admin, proposals and invoicing, choosing the right tools for your industry, and building simple automated workflows that save real time every week.</p>
+      </div>
+
     </div>
 
     <div class="workshop-note">
