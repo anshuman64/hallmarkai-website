@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hallmark AI — Clear Education. Practical Implementation. Human-Centered AI.</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet" />
@@ -63,25 +65,13 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
       text-decoration: none;
     }
 
-    .logo-star {
-      width: 28px;
+    .logo-img {
       height: 28px;
-      fill: var(--yellow);
-    }
-
-    .logo-text {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--off-white);
-      letter-spacing: -0.01em;
-    }
-
-    .logo-text span {
-      color: var(--yellow);
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -800,7 +790,12 @@
     .footer-left {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+    }
+
+    .footer-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
     }
 
     .footer-right {
@@ -917,10 +912,7 @@
   <!-- ═══════ NAV ═══════ -->
   <nav>
     <a href="#" class="logo">
-      <svg class="logo-star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="12,0 14.6,8.2 23.4,8.2 16.4,13.3 19,21.5 12,16.4 5,21.5 7.6,13.3 0.6,8.2 9.4,8.2" />
-      </svg>
-      <span class="logo-text">hallmark <span>AI</span></span>
+      <img src="hallmark-logo-white.svg" alt="Hallmark AI Logo" class="logo-img" />
     </a>
 
     <ul class="nav-links">
@@ -1321,11 +1313,7 @@
   <!-- ═══════ FOOTER ═══════ -->
   <footer>
     <div class="footer-left">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#F5C400" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="12,0 14.6,8.2 23.4,8.2 16.4,13.3 19,21.5 12,16.4 5,21.5 7.6,13.3 0.6,8.2 9.4,8.2" />
-      </svg>
-      <span style="font-size: 0.85rem; font-weight: 600; color: var(--off-white);">hallmark <span
-          style="color: var(--yellow);">AI</span></span>
+      <img src="hallmark-logo-white.svg" alt="Hallmark AI Logo" class="footer-logo-img" />
     </div>
     <div class="footer-right">
       &copy; 2026 Hallmark AI · Appleton, Wisconsin
