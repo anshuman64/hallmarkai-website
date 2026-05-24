@@ -392,6 +392,17 @@
       background: var(--yellow);
     }
 
+    .about-sidebar .about-avatar {
+      float: left;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 1.5rem 1rem 0;
+      object-fit: cover;
+      border: 2px solid rgba(244, 244, 242, 0.1);
+      shape-outside: circle();
+    }
+
     .about-sidebar blockquote {
       font-family: 'Lora', serif;
       font-size: 1.15rem;
@@ -1451,6 +1462,7 @@
         </div>
 
         <div class="about-sidebar">
+          <img src="anshuman-headshot-sq.png" alt="Anshuman Dewangan" class="about-avatar" />
           <blockquote>
             "The problem is no longer 'Can people use ChatGPT?' The real problem is helping people and organizations
             understand where AI is useful, where it is risky, and how to integrate it into workflows for actual productivity."
