@@ -93,6 +93,10 @@
       color: var(--off-white);
     }
 
+    .mobile-only-cta {
+      display: none;
+    }
+
     .nav-cta {
       background: var(--yellow);
       color: var(--charcoal);
@@ -819,10 +823,12 @@
 
       .approach-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
       }
 
       .approach-step {
-        border-right: 1px solid rgba(244, 244, 242, 0.08);
+        border: 1px solid rgba(244, 244, 242, 0.08);
+        padding: 1.75rem;
       }
 
       .workshop-tracks {
@@ -844,11 +850,68 @@
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(30, 31, 35, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        gap: 2rem;
+        padding: 2rem;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 99;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.25rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      .mobile-only-cta {
+        display: block;
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .mobile-only-cta .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 0.85rem 2rem;
+      }
+
+      .nav-cta {
+        display: none; /* Hide desktop CTA in header on mobile */
       }
 
       .mobile-menu-btn {
         display: block;
+        z-index: 1000;
+        position: relative;
+      }
+
+      .mobile-menu-btn.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .mobile-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-btn.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
 
       section,
@@ -866,21 +929,74 @@
 
       .approach-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .approach-step {
+        padding: 1.5rem;
+      }
+
+      .about-sidebar {
+        padding: 1.75rem;
+      }
+
+      .service-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .track {
+        padding: 1.5rem;
       }
 
       .fox-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr; /* Keep 2 cols on mobile */
       }
 
       .contact-actions {
         flex-direction: column;
+        align-items: stretch;
+        max-width: 320px;
+        margin: 0 auto 3rem;
+      }
+
+      .contact-actions a {
+        text-align: center;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
         align-items: center;
+      }
+
+      .contact-sep {
+        display: none;
       }
 
       footer {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .hero-actions a {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fox-stats {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -904,6 +1020,52 @@
     .hero-right {
       animation: fadeUp 0.7s 0.2s ease-out both;
     }
+
+    /* ── LIGHT SECTION ADAPTATIONS ── */
+    .section-light .service-card {
+      border: 1px solid rgba(30, 31, 35, 0.08);
+      background: rgba(30, 31, 35, 0.01);
+    }
+    
+    .section-light .service-card:hover {
+      border-color: rgba(30, 31, 35, 0.15);
+      background: rgba(30, 31, 35, 0.03);
+    }
+    
+    .section-light .service-card h3 {
+      color: var(--charcoal);
+    }
+    
+    .section-light .service-card p {
+      color: var(--text-body-light);
+    }
+    
+    .section-light .service-card .service-list li {
+      color: var(--text-body-light);
+      border-bottom: 1px solid rgba(30, 31, 35, 0.05);
+    }
+
+    .section-light .track {
+      background: rgba(30, 31, 35, 0.02);
+      border: 1px solid rgba(30, 31, 35, 0.06);
+    }
+
+    .section-light .track h3 {
+      color: var(--charcoal);
+    }
+
+    .section-light .track-desc {
+      color: var(--text-body-light);
+    }
+
+    .section-light .topic-list li {
+      color: var(--charcoal);
+      border-bottom: 1px solid rgba(30, 31, 35, 0.06);
+    }
+
+    .section-light .workshop-note p {
+      color: var(--text-body-light);
+    }
   </style>
 </head>
 
@@ -916,11 +1078,12 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#foxvalley">Fox Valley</a></li>
       <li><a href="#approach">Approach</a></li>
       <li><a href="#workshops">Workshops</a></li>
-      <li><a href="#foxvalley">Fox Valley</a></li>
+      <li><a href="#about">About</a></li>
+      <li class="mobile-only-cta"><a href="#contact" class="btn-primary">Get in Touch</a></li>
     </ul>
 
     <a href="#contact" class="nav-cta">Get in Touch</a>
@@ -934,8 +1097,8 @@
   <section class="hero" id="hero">
     <div class="hero-grid">
       <div class="hero-content">
-        <div class="hero-eyebrow">Appleton, Wisconsin</div>
-        <h1>AI education and consulting that actually <em>works.</em></h1>
+        <div class="hero-eyebrow">Appleton, Fox Valley, WI</div>
+        <h1>Silicon Valley expertise.<br>Midwest practicality.<br><em>Human-centered AI.</em></h1>
         <p class="hero-sub">
           Hallmark AI helps communities and organizations understand, adopt, and operationalize artificial intelligence
           in ways that are practical, trustworthy, and measurable.
@@ -952,7 +1115,7 @@
         </div>
         <div class="hero-stat">
           <div class="hero-stat-number">2.3/5</div>
-          <div class="hero-stat-label">Average regional AI maturity —<br>the opportunity is now</div>
+          <div class="hero-stat-label">Average regional AI maturity</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-number">76%</div>
@@ -962,146 +1125,155 @@
     </div>
   </section>
 
-  <!-- ═══════ ABOUT ═══════ -->
-  <section class="section-light" id="about">
+  <!-- ═══════ SERVICES ═══════ -->
+  <section class="section-light" id="services">
     <div class="section-inner">
-      <div class="section-label label-forest">About</div>
-      <div class="section-title" style="color: var(--charcoal);">Meet Anshuman Dewangan</div>
-      <div class="divider"></div>
+      <div class="section-label label-teal">Services</div>
+      <div class="section-title" style="color: var(--charcoal);">Three pillars. One mission.</div>
+      <p class="section-subtitle section-subtitle-dark">Clear education. Practical implementation. Human-centered AI
+        adoption — for communities, small businesses, and enterprises.</p>
 
-      <div class="about-grid">
-        <div class="about-content">
-          <p>
-            Anshuman is a Silicon Valley native bringing 12 years of hands-on AI engineering and product leadership to
-            Northeast Wisconsin. He currently serves as Lead AI Engineer at HealthEdge, where he works on enterprise
-            workflow automation, agentic platform development, and AI tooling enablement.
-          </p>
-          <p>
-            His work sits at the center of the current AI productivity challenge: moving beyond chatbots and text
-            generation into agentic tools and systems embedded in real business operations.
-          </p>
-          <p>
-            Before HealthEdge, Anshuman shaped strategy for a major new market vertical as a product manager at PayPal.
-            As a Google DeepMind Fellow, he earned a Master's in Computer Science from UC San Diego and completed his
-            undergraduate degree at UC Berkeley with a triple major in Business Administration, Statistics, and
-            Economics.
-          </p>
-
-          <div class="about-credentials">
-            <div class="credential">
-              <div class="credential-title">Lead AI Engineer, HealthEdge</div>
-              <div class="credential-detail">Enterprise workflow automation &amp; agentic platforms</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">Product Manager, PayPal</div>
-              <div class="credential-detail">New market vertical strategy</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">Google DeepMind Fellow</div>
-              <div class="credential-detail">M.S. Computer Science, UC San Diego</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">UC Berkeley</div>
-              <div class="credential-detail">B.A. Business Administration, Statistics &amp; Economics</div>
-            </div>
-          </div>
+      <div class="services-grid">
+        <!-- Community Education -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--forest)" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="14" r="6" />
+            <path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12" />
+            <path d="M14 14l6 4 6-4" />
+          </svg>
+          <div class="service-audience">Community Education</div>
+          <h3>AI Literacy for Everyone</h3>
+          <p>Help residents, students, educators, and civic leaders understand what AI is, how it works, and what it means
+            for daily life, work, and community.</p>
+          <ul class="service-list">
+            <li>What AI is and what it is not</li>
+            <li>How to use ChatGPT, Claude, and Gemini</li>
+            <li>Spotting hallucinations and misinformation</li>
+            <li>AI in schools, jobs, and local government</li>
+            <li>Energy, data centers, and sustainability</li>
+            <li>Workshops for families and retirees</li>
+          </ul>
         </div>
 
-        <div class="about-sidebar">
-          <blockquote>
-            "The problem is no longer 'Can people use ChatGPT?' The real problem is helping people and organizations
-            understand where AI is useful, where it is risky, and how to integrate it into real workflows."
-          </blockquote>
-          <div class="attribution">— Anshuman Dewangan, Founder</div>
+        <!-- Small Business -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--teal)" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="10" width="28" height="22" rx="2" />
+            <path d="M6 16h28" />
+            <path d="M14 4v6M26 4v6" />
+            <path d="M14 22h12M14 27h8" />
+          </svg>
+          <div class="service-audience">Small Business Consulting</div>
+          <h3>Practical AI for Local Business</h3>
+          <p>Hands-on help for local businesses to adopt AI tools that save time, reduce costs, and improve marketing,
+            operations, and customer service.</p>
+          <ul class="service-list">
+            <li>Marketing and social media content</li>
+            <li>Customer response drafting</li>
+            <li>Website copy and local SEO</li>
+            <li>Administrative automation</li>
+            <li>Internal knowledge bases</li>
+            <li>Choosing the right AI tools</li>
+          </ul>
+        </div>
 
-          <div class="hallmark-origin">
-            <div class="origin-label">Why "Hallmark"?</div>
-            <p>
-              In January 2025, Anshuman — best man at his friend's wedding — met Hannah, maid of honor and sister of the
-              bride. Taking a chance on love, he moved to Appleton later that year, and now lives with her and her three
-              horses on her 40-acre farm. A real-life Hallmark story.
-            </p>
-          </div>
+        <!-- Enterprise -->
+        <div class="service-card">
+          <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--copper)" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 4L36 14v16L20 36 4 26V14z" />
+            <path d="M20 4v14" />
+            <path d="M20 18L4 14" />
+            <path d="M20 18l16-4" />
+            <path d="M20 18v18" />
+          </svg>
+          <div class="service-audience">Enterprise Consulting</div>
+          <h3>AI Strategy &amp; Implementation</h3>
+          <p>Help organizations move beyond pilots to production — with workflow integration, governance, vendor
+            evaluation, and measurable ROI.</p>
+          <ul class="service-list">
+            <li>AI readiness assessments</li>
+            <li>Use case prioritization</li>
+            <li>Workflow integration design</li>
+            <li>Governance and risk management</li>
+            <li>Build-vs-buy guidance</li>
+            <li>Agentic system architecture</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ SERVICES ═══════ -->
-  <section id="services">
-    <div class="section-label label-yellow">Services</div>
-    <div class="section-title">Three pillars. One mission.</div>
-    <p class="section-subtitle section-subtitle-light">Clear education. Practical implementation. Human-centered AI
-      adoption — for communities, small businesses, and enterprises.</p>
+  <!-- ═══════ FOX VALLEY ═══════ -->
+  <section id="foxvalley">
+    <div class="section-label label-yellow">Local Roots</div>
+    <div class="section-title">Built for the Fox Valley</div>
+    <div class="divider"></div>
 
-    <div class="services-grid">
-      <!-- Community Education -->
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--forest)" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="20" cy="14" r="6" />
-          <path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12" />
-          <path d="M14 14l6 4 6-4" />
-        </svg>
-        <div class="service-audience">Community Education</div>
-        <h3>AI Literacy for Everyone</h3>
-        <p>Help residents, students, educators, and civic leaders understand what AI is, how it works, and what it means
-          for daily life, work, and community.</p>
-        <ul class="service-list">
-          <li>What AI is and what it is not</li>
-          <li>How to use ChatGPT, Claude, and Gemini</li>
-          <li>Spotting hallucinations and misinformation</li>
-          <li>AI in schools, jobs, and local government</li>
-          <li>Energy, data centers, and sustainability</li>
-          <li>Workshops for families and retirees</li>
-        </ul>
+    <div class="fox-grid">
+      <div class="fox-content">
+        <p style="color: var(--text-body);">
+          Hallmark AI is based in Appleton, Wisconsin — and that's not incidental. The Fox Cities, Green Bay, Oshkosh,
+          and the broader Northeast Wisconsin region have a strong economic foundation in manufacturing, healthcare,
+          insurance, education, agriculture, and professional services. These industries stand to benefit enormously
+          from practical AI adoption.
+        </p>
+        <p style="color: var(--text-body);">
+          But most AI consultants and educators are based in coastal tech hubs, speaking a language that doesn't
+          always translate to a main street manufacturer, a family-owned clinic, or a regional nonprofit. Hallmark AI
+          bridges that gap — combining Silicon Valley technical depth with the pragmatism and trust that Midwest
+          organizations expect.
+        </p>
+        <p style="color: var(--text-body);">
+          Regional research shows that the Fox Cities' average AI maturity is 2.3 out of 5. The enthusiasm is there —
+          over half of local organizations are experimenting with AI pilots. What's missing is structured guidance,
+          governance, workforce training, and success metrics. That's exactly where Hallmark AI works.
+        </p>
       </div>
 
-      <!-- Small Business -->
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--teal)" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <rect x="6" y="10" width="28" height="22" rx="2" />
-          <path d="M6 16h28" />
-          <path d="M14 4v6M26 4v6" />
-          <path d="M14 22h12M14 27h8" />
-        </svg>
-        <div class="service-audience">Small Business Consulting</div>
-        <h3>Practical AI for Local Business</h3>
-        <p>Hands-on help for local businesses to adopt AI tools that save time, reduce costs, and improve marketing,
-          operations, and customer service.</p>
-        <ul class="service-list">
-          <li>Marketing and social media content</li>
-          <li>Customer response drafting</li>
-          <li>Website copy and local SEO</li>
-          <li>Administrative automation</li>
-          <li>Internal knowledge bases</li>
-          <li>Choosing the right AI tools</li>
-        </ul>
-      </div>
+      <div>
+        <div class="fox-stats">
+          <div class="fox-stat">
+            <div class="fox-stat-value">45</div>
+            <div class="fox-stat-desc">Organizations assessed<br>across the Fox Valley</div>
+          </div>
+          <div class="fox-stat">
+            <div class="fox-stat-value">50%+</div>
+            <div class="fox-stat-desc">Running AI pilots<br>or experiments</div>
+          </div>
+          <div class="fox-stat">
+            <div class="fox-stat-value">1 in 4</div>
+            <div class="fox-stat-desc">Have formal AI<br>governance policies</div>
+          </div>
+          <div class="fox-stat">
+            <div class="fox-stat-value">35%</div>
+            <div class="fox-stat-desc">Report AI literacy<br>training programs</div>
+          </div>
+        </div>
 
-      <!-- Enterprise -->
-      <div class="service-card">
-        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--copper)" stroke-width="1.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 4L36 14v16L20 36 4 26V14z" />
-          <path d="M20 4v14" />
-          <path d="M20 18L4 14" />
-          <path d="M20 18l16-4" />
-          <path d="M20 18v18" />
-        </svg>
-        <div class="service-audience">Enterprise Consulting</div>
-        <h3>AI Strategy &amp; Implementation</h3>
-        <p>Help organizations move beyond pilots to production — with workflow integration, governance, vendor
-          evaluation, and measurable ROI.</p>
-        <ul class="service-list">
-          <li>AI readiness assessments</li>
-          <li>Use case prioritization</li>
-          <li>Workflow integration design</li>
-          <li>Governance and risk management</li>
-          <li>Build-vs-buy guidance</li>
-          <li>Agentic system architecture</li>
-        </ul>
+        <div class="fox-industries">
+          <div class="fox-industries-label">Key Regional Industries</div>
+          <div class="industry-tags">
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Manufacturing</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Healthcare</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Insurance</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Education</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Agriculture</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Logistics</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Financial Services</span>
+            <span class="industry-tag"
+              style="color: var(--text-body); border-color: rgba(244,244,242,0.15);">Professional Services</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1216,74 +1388,65 @@
     </div>
   </section>
 
-  <!-- ═══════ FOX VALLEY ═══════ -->
-  <section class="section-light" id="foxvalley">
+  <!-- ═══════ ABOUT ═══════ -->
+  <section class="section-light" id="about">
     <div class="section-inner">
-      <div class="section-label label-forest">Local Roots</div>
-      <div class="section-title" style="color: var(--charcoal);">Built for the Fox Valley</div>
+      <div class="section-label label-forest">About</div>
+      <div class="section-title" style="color: var(--charcoal);">Meet Anshuman Dewangan</div>
       <div class="divider"></div>
 
-      <div class="fox-grid">
-        <div class="fox-content">
-          <p style="color: var(--text-body-light);">
-            Hallmark AI is based in Appleton, Wisconsin — and that's not incidental. The Fox Cities, Green Bay, Oshkosh,
-            and the broader Northeast Wisconsin region have a strong economic foundation in manufacturing, healthcare,
-            insurance, education, agriculture, and professional services. These industries stand to benefit enormously
-            from practical AI adoption.
+      <div class="about-grid">
+        <div class="about-content">
+          <p>
+            Anshuman is a Silicon Valley native bringing 12 years of hands-on AI engineering and product leadership to
+            Northeast Wisconsin. He currently serves as Lead AI Engineer at HealthEdge, where he works on enterprise
+            workflow automation, agentic platform development, and AI tooling enablement.
           </p>
-          <p style="color: var(--text-body-light);">
-            But most AI consultants and educators are based in coastal tech hubs, speaking a language that doesn't
-            always translate to a main street manufacturer, a family-owned clinic, or a regional nonprofit. Hallmark AI
-            bridges that gap — combining Silicon Valley technical depth with the pragmatism and trust that Midwest
-            organizations expect.
+          <p>
+            His work sits at the center of the current AI productivity challenge: moving beyond chatbots and text
+            generation into agentic tools and systems embedded in real business operations.
           </p>
-          <p style="color: var(--text-body-light);">
-            Regional research shows that the Fox Cities' average AI maturity is 2.3 out of 5. The enthusiasm is there —
-            over half of local organizations are experimenting with AI pilots. What's missing is structured guidance,
-            governance, workforce training, and success metrics. That's exactly where Hallmark AI works.
+          <p>
+            Before HealthEdge, Anshuman shaped strategy for a major new market vertical as a product manager at PayPal.
+            As a Google DeepMind Fellow, he earned a Master's in Computer Science from UC San Diego and completed his
+            undergraduate degree at UC Berkeley with a triple major in Business Administration, Statistics, and
+            Economics.
           </p>
-        </div>
 
-        <div>
-          <div class="fox-stats">
-            <div class="fox-stat">
-              <div class="fox-stat-value">45</div>
-              <div class="fox-stat-desc">Organizations assessed<br>across the Fox Valley</div>
+          <div class="about-credentials">
+            <div class="credential">
+              <div class="credential-title">Lead AI Engineer, HealthEdge</div>
+              <div class="credential-detail">Enterprise workflow automation &amp; agentic platforms</div>
             </div>
-            <div class="fox-stat">
-              <div class="fox-stat-value">50%+</div>
-              <div class="fox-stat-desc">Running AI pilots<br>or experiments</div>
+            <div class="credential">
+              <div class="credential-title">Product Manager, PayPal</div>
+              <div class="credential-detail">New market vertical strategy</div>
             </div>
-            <div class="fox-stat">
-              <div class="fox-stat-value">1 in 4</div>
-              <div class="fox-stat-desc">Have formal AI<br>governance policies</div>
+            <div class="credential">
+              <div class="credential-title">Google DeepMind Fellow</div>
+              <div class="credential-detail">M.S. Computer Science, UC San Diego</div>
             </div>
-            <div class="fox-stat">
-              <div class="fox-stat-value">35%</div>
-              <div class="fox-stat-desc">Report AI literacy<br>training programs</div>
+            <div class="credential">
+              <div class="credential-title">UC Berkeley</div>
+              <div class="credential-detail">B.A. Business Administration, Statistics &amp; Economics</div>
             </div>
           </div>
+        </div>
 
-          <div class="fox-industries">
-            <div class="fox-industries-label">Key Regional Industries</div>
-            <div class="industry-tags">
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Manufacturing</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Healthcare</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Insurance</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Education</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Agriculture</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Logistics</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Financial Services</span>
-              <span class="industry-tag"
-                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Professional Services</span>
-            </div>
+        <div class="about-sidebar">
+          <blockquote>
+            "The problem is no longer 'Can people use ChatGPT?' The real problem is helping people and organizations
+            understand where AI is useful, where it is risky, and how to integrate it into real workflows."
+          </blockquote>
+          <div class="attribution">— Anshuman Dewangan, Founder</div>
+
+          <div class="hallmark-origin">
+            <div class="origin-label">Why "Hallmark"?</div>
+            <p>
+              In January 2025, Anshuman — best man at his friend's wedding — met Hannah, maid of honor and sister of the
+              bride. Taking a chance on love, he moved to Appleton later that year, and now lives with her and her three
+              horses on her 40-acre farm. A real-life Hallmark story.
+            </p>
           </div>
         </div>
       </div>
@@ -1305,8 +1468,8 @@
     </div>
 
     <div class="contact-details">
-      <a href="mailto:email@hallmark-ai.com">email@hallmark-ai.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a
-        href="https://hallmark-ai.com">hallmark-ai.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;Appleton, WI
+      <a href="mailto:email@hallmark-ai.com">email@hallmark-ai.com</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><a
+        href="https://hallmark-ai.com">hallmark-ai.com</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><span>Appleton, WI</span>
     </div>
   </section>
 
@@ -1319,6 +1482,37 @@
       &copy; 2026 Hallmark AI · Appleton, Wisconsin
     </div>
   </footer>
+
+  <!-- ═══════ MOBILE NAV SCRIPT ═══════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      const body = document.body;
+
+      const toggleMenu = () => {
+        const isOpen = menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        
+        if (isOpen) {
+          body.style.overflow = 'hidden';
+        } else {
+          body.style.overflow = '';
+        }
+      };
+
+      menuBtn.addEventListener('click', toggleMenu);
+
+      // Close menu when clicking a link
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+    });
+  </script>
 
 </body>
 
