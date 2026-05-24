@@ -555,7 +555,7 @@
     .step-number {
       font-size: 2.5rem;
       font-weight: 700;
-      color: rgba(245, 196, 0, 0.15);
+      color: rgba(245, 196, 0, 0.80);
       margin-bottom: 1rem;
       line-height: 1;
     }
@@ -664,7 +664,7 @@
       margin-top: 3rem;
       padding: 2rem;
       border-left: 2px solid var(--yellow);
-      background: rgba(245, 196, 0, 0.04);
+      background: rgba(245, 196, 0, 0.03);
     }
 
     .workshop-note p {
@@ -712,6 +712,24 @@
       font-size: 0.75rem;
       color: var(--text-secondary);
       line-height: 1.5;
+    }
+
+    .fox-stats-source {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      opacity: 0.75;
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .citation-sup {
+      color: var(--yellow);
+      font-weight: 600;
+      padding-left: 1px;
     }
 
     .fox-industries {
@@ -1100,7 +1118,7 @@
         <div class="hero-eyebrow">Appleton, Fox Valley, WI</div>
         <h1>Silicon Valley expertise.<br>Midwest practicality.<br><em>Human-centered AI.</em></h1>
         <p class="hero-sub">
-          Hallmark AI helps communities and organizations understand, adopt, and operationalize artificial intelligence
+          Hallmark AI helps communities and organizations understand, apply, and operationalize artificial intelligence
           in ways that are practical, trustworthy, and measurable.
         </p>
         <div class="hero-actions">
@@ -1142,17 +1160,17 @@
             <path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12" />
             <path d="M14 14l6 4 6-4" />
           </svg>
-          <div class="service-audience">Community Education</div>
-          <h3>AI Literacy for Everyone</h3>
+          <div class="service-audience">Community</div>
+          <h3>AI Education for Everyone</h3>
           <p>Help residents, students, educators, and civic leaders understand what AI is, how it works, and what it means
-            for daily life, work, and community.</p>
+            for daily life, work, and society.</p>
           <ul class="service-list">
-            <li>What AI is and what it is not</li>
+            <li>What AI is and how it works</li>
             <li>How to use ChatGPT, Claude, and Gemini</li>
             <li>Spotting hallucinations and misinformation</li>
             <li>AI in schools, jobs, and local government</li>
             <li>Energy, data centers, and sustainability</li>
-            <li>Workshops for families and retirees</li>
+            <li>AI myths vs. reality</li>
           </ul>
         </div>
 
@@ -1165,17 +1183,17 @@
             <path d="M14 4v6M26 4v6" />
             <path d="M14 22h12M14 27h8" />
           </svg>
-          <div class="service-audience">Small Business Consulting</div>
-          <h3>Practical AI for Local Business</h3>
-          <p>Hands-on help for local businesses to adopt AI tools that save time, reduce costs, and improve marketing,
-            operations, and customer service.</p>
+          <div class="service-audience">Small Business</div>
+          <h3>Practical AI for Your Business</h3>
+          <p>Hands-on help for local businesses to adopt AI tools that save time, reduce costs, and improve efficiency across operations,
+            marketing, and customer service.</p>
           <ul class="service-list">
             <li>Marketing and social media content</li>
-            <li>Customer response drafting</li>
-            <li>Website copy and local SEO</li>
-            <li>Administrative automation</li>
-            <li>Internal knowledge bases</li>
+            <li>Branding and logo design</li>
+            <li>Generating presentations & spreadsheets</li>
             <li>Choosing the right AI tools</li>
+            <li>Industry-specific use cases</li>
+            <li>No-code app development</li>
           </ul>
         </div>
 
@@ -1189,17 +1207,17 @@
             <path d="M20 18l16-4" />
             <path d="M20 18v18" />
           </svg>
-          <div class="service-audience">Enterprise Consulting</div>
+          <div class="service-audience">Enterprise</div>
           <h3>AI Strategy &amp; Implementation</h3>
           <p>Help organizations move beyond pilots to production — with workflow integration, governance, vendor
             evaluation, and measurable ROI.</p>
           <ul class="service-list">
             <li>AI readiness assessments</li>
             <li>Use case prioritization</li>
-            <li>Workflow integration design</li>
+            <li>Multi-agent workflow integration architecture</li>
             <li>Governance and risk management</li>
             <li>Build-vs-buy guidance</li>
-            <li>Agentic system architecture</li>
+            <li>One-on-one executive coaching</li>
           </ul>
         </div>
       </div>
@@ -1227,7 +1245,7 @@
           organizations expect.
         </p>
         <p style="color: var(--text-body);">
-          Regional research shows that the Fox Cities' average AI maturity is 2.3 out of 5. The enthusiasm is there —
+          Regional research<sup>*</sup> shows that the Fox Cities' average AI maturity is 2.3 out of 5. The enthusiasm is there —
           over half of local organizations are experimenting with AI pilots. What's missing is structured guidance,
           governance, workforce training, and success metrics. That's exactly where Hallmark AI works.
         </p>
@@ -1251,6 +1269,11 @@
             <div class="fox-stat-value">35%</div>
             <div class="fox-stat-desc">Report AI literacy<br>training programs</div>
           </div>
+        </div>
+
+        <div class="fox-stats-source">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--yellow);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <span>All regional statistics sourced from the <em>Blackline IT 2025 Fox Valley Regional AI Assessment Report</em>.</span>
         </div>
 
         <div class="fox-industries">
@@ -1291,7 +1314,7 @@
           <div class="step-number">01</div>
           <h3 style="color: var(--charcoal);">Assess</h3>
           <p style="color: var(--text-body-light);">Understand your current AI maturity, data readiness, workflows, and
-            organizational goals. No assumptions. No generic playbooks.</p>
+            organizational goals.</p>
         </div>
         <div class="approach-step">
           <div class="step-number">02</div>
@@ -1317,15 +1340,15 @@
 
   <!-- ═══════ WORKSHOPS ═══════ -->
   <section id="workshops">
-    <div class="section-label label-yellow">Workshop Topics</div>
+    <div class="section-label label-yellow">AI Education Topics</div>
     <div class="section-title">Workshops and courses for every level</div>
     <p class="section-subtitle section-subtitle-light">From AI literacy for first-time users to agentic system design
-      for engineering teams. All workshops are available for in-person delivery across Northeast Wisconsin.</p>
+      for engineering teams. All workshops are available for in-person or virtual delivery across Northeast Wisconsin.</p>
 
     <div class="workshop-tracks">
       <!-- Community Track -->
       <div class="track">
-        <div class="track-label">Community &amp; Literacy</div>
+        <div class="track-label">Community</div>
         <h3>Understand AI</h3>
         <p class="track-desc">Plain-language education for residents, students, educators, parents, and civic leaders.
         </p>
@@ -1361,7 +1384,7 @@
 
       <!-- Enterprise Track -->
       <div class="track">
-        <div class="track-label">Enterprise &amp; Technical</div>
+        <div class="track-label">Enterprise</div>
         <h3>Operationalize AI</h3>
         <p class="track-desc">Strategy, governance, and implementation for executives, IT leaders, and engineering
           teams.</p>
@@ -1392,7 +1415,7 @@
   <section class="section-light" id="about">
     <div class="section-inner">
       <div class="section-label label-forest">About</div>
-      <div class="section-title" style="color: var(--charcoal);">Meet Anshuman Dewangan</div>
+      <div class="section-title" style="color: var(--charcoal);">Meet Anshuman</div>
       <div class="divider"></div>
 
       <div class="about-grid">
@@ -1412,39 +1435,20 @@
             undergraduate degree at UC Berkeley with a triple major in Business Administration, Statistics, and
             Economics.
           </p>
-
-          <div class="about-credentials">
-            <div class="credential">
-              <div class="credential-title">Lead AI Engineer, HealthEdge</div>
-              <div class="credential-detail">Enterprise workflow automation &amp; agentic platforms</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">Product Manager, PayPal</div>
-              <div class="credential-detail">New market vertical strategy</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">Google DeepMind Fellow</div>
-              <div class="credential-detail">M.S. Computer Science, UC San Diego</div>
-            </div>
-            <div class="credential">
-              <div class="credential-title">UC Berkeley</div>
-              <div class="credential-detail">B.A. Business Administration, Statistics &amp; Economics</div>
-            </div>
-          </div>
         </div>
 
         <div class="about-sidebar">
           <blockquote>
             "The problem is no longer 'Can people use ChatGPT?' The real problem is helping people and organizations
-            understand where AI is useful, where it is risky, and how to integrate it into real workflows."
+            understand where AI is useful, where it is risky, and how to integrate it into workflows for actual productivity."
           </blockquote>
           <div class="attribution">— Anshuman Dewangan, Founder</div>
 
           <div class="hallmark-origin">
             <div class="origin-label">Why "Hallmark"?</div>
             <p>
-              In January 2025, Anshuman — best man at his friend's wedding — met Hannah, maid of honor and sister of the
-              bride. Taking a chance on love, he moved to Appleton later that year, and now lives with her and her three
+              In January 2025, Anshuman — best man at his friend's wedding — met his partner, Hannah, maid-of-honor and sister of the
+              bride. Taking a chance on love, he moved to Appleton later that year and will be moving in with her and her three
               horses on her 40-acre farm. A real-life Hallmark story.
             </p>
           </div>
@@ -1463,13 +1467,13 @@
     </p>
 
     <div class="contact-actions">
-      <a href="mailto:email@hallmark-ai.com" class="btn-primary">Schedule a Conversation</a>
+      <a href="mailto:anshuman64@gmail.com" class="btn-primary">Schedule a Conversation</a>
       <a href="#services" class="btn-secondary">View Services</a>
     </div>
 
     <div class="contact-details">
-      <a href="mailto:email@hallmark-ai.com">email@hallmark-ai.com</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><a
-        href="https://hallmark-ai.com">hallmark-ai.com</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><span>Appleton, WI</span>
+      <a href="mailto:anshuman64@gmail.com">email</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><a
+        href="https://linkedin.com/in/anshumandewangan">linkedin</a><span class="contact-sep">&nbsp;&nbsp;·&nbsp;&nbsp;</span><span>Appleton, WI</span>
     </div>
   </section>
 
