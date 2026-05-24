@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallmark AI — Clear Education. Practical Implementation. Human-Centered AI.</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #F5C400;
+      --charcoal: #1E1F23;
+      --off-white: #F4F4F2;
+      --teal: #0F766E;
+      --copper: #A5541C;
+      --forest: #1F5E4A;
+      --charcoal-90: rgba(30, 31, 35, 0.9);
+      --charcoal-light: #2a2b30;
+      --text-secondary: #8a8b8f;
+      --text-body: #c8c9cc;
+      --text-body-light: #4a4b50;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--charcoal);
+      color: var(--off-white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--charcoal-90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244, 244, 242, 0.06);
+      transition: padding 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-star {
+      width: 28px;
+      height: 28px;
+      fill: var(--yellow);
+    }
+
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--off-white);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-text span {
+      color: var(--yellow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--off-white);
+    }
+
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--charcoal);
+      padding: 0.55rem 1.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.88;
+    }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--off-white);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 3rem 6rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.5fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--yellow);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-sub {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--charcoal);
+      padding: 0.85rem 2rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--off-white);
+      padding: 0.85rem 1.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(244, 244, 242, 0.2);
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(244, 244, 242, 0.5);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-stat {
+      padding: 1.5rem;
+      border: 1px solid rgba(244, 244, 242, 0.08);
+      background: rgba(244, 244, 242, 0.02);
+    }
+
+    .hero-stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    /* ── SECTION SYSTEM ── */
+    section {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-light {
+      background: var(--off-white);
+      color: var(--charcoal);
+      max-width: 100%;
+      padding: 6rem 3rem;
+    }
+
+    .section-light .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .label-forest {
+      color: var(--forest);
+    }
+
+    .label-teal {
+      color: var(--teal);
+    }
+
+    .label-copper {
+      color: var(--copper);
+    }
+
+    .label-yellow {
+      color: var(--yellow);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    .section-subtitle-dark {
+      color: var(--text-body-light);
+    }
+
+    .section-subtitle-light {
+      color: var(--text-body);
+    }
+
+    .divider {
+      width: 3rem;
+      height: 2px;
+      background: var(--yellow);
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-content p {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-body-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .credential {
+      padding: 1.25rem 1.5rem;
+      border-left: 2px solid var(--yellow);
+      background: rgba(245, 196, 0, 0.04);
+    }
+
+    .credential-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+
+    .credential-detail {
+      font-size: 0.82rem;
+      color: var(--text-body-light);
+    }
+
+    .about-sidebar {
+      padding: 2.5rem;
+      background: var(--charcoal);
+      color: var(--off-white);
+      position: relative;
+    }
+
+    .about-sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--yellow);
+    }
+
+    .about-sidebar blockquote {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-style: italic;
+      color: var(--text-body);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-sidebar .attribution {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .hallmark-origin {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(244, 244, 242, 0.1);
+    }
+
+    .hallmark-origin p {
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    .hallmark-origin .origin-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(244, 244, 242, 0.08);
+      background: rgba(244, 244, 242, 0.02);
+      transition: border-color 0.3s, background 0.3s;
+      position: relative;
+    }
+
+    .service-card:hover {
+      border-color: rgba(244, 244, 242, 0.15);
+      background: rgba(244, 244, 242, 0.04);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+
+    .service-card:nth-child(1)::before {
+      background: var(--forest);
+    }
+
+    .service-card:nth-child(2)::before {
+      background: var(--teal);
+    }
+
+    .service-card:nth-child(3)::before {
+      background: var(--copper);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-audience {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .service-card:nth-child(1) .service-audience {
+      color: var(--forest);
+    }
+
+    .service-card:nth-child(2) .service-audience {
+      color: var(--teal);
+    }
+
+    .service-card:nth-child(3) .service-audience {
+      color: var(--copper);
+    }
+
+    .service-card p {
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .service-list li {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(244, 244, 242, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-list li::before {
+      content: '→';
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+
+    /* ── APPROACH ── */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .approach-step {
+      padding: 2rem;
+      border: 1px solid rgba(244, 244, 242, 0.08);
+      border-right: none;
+      position: relative;
+    }
+
+    .approach-step:last-child {
+      border-right: 1px solid rgba(244, 244, 242, 0.08);
+    }
+
+    .step-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(245, 196, 0, 0.15);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .approach-step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .approach-step p {
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* ── WORKSHOPS ── */
+    .workshop-tracks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .track {
+      padding: 2rem;
+      background: rgba(244, 244, 242, 0.03);
+      border: 1px solid rgba(244, 244, 242, 0.06);
+    }
+
+    .track-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .track-label::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+    }
+
+    .track:nth-child(1) .track-label {
+      color: var(--forest);
+    }
+
+    .track:nth-child(1) .track-label::before {
+      background: var(--forest);
+    }
+
+    .track:nth-child(2) .track-label {
+      color: var(--teal);
+    }
+
+    .track:nth-child(2) .track-label::before {
+      background: var(--teal);
+    }
+
+    .track:nth-child(3) .track-label {
+      color: var(--copper);
+    }
+
+    .track:nth-child(3) .track-label::before {
+      background: var(--copper);
+    }
+
+    .track h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .track-desc {
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 1.25rem;
+    }
+
+    .topic-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .topic-list li {
+      font-size: 0.82rem;
+      color: var(--off-white);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(244, 244, 242, 0.06);
+    }
+
+    .topic-list li:last-child {
+      border-bottom: none;
+    }
+
+    .workshop-note {
+      margin-top: 3rem;
+      padding: 2rem;
+      border-left: 2px solid var(--yellow);
+      background: rgba(245, 196, 0, 0.04);
+    }
+
+    .workshop-note p {
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* ── FOX VALLEY ── */
+    .fox-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .fox-content p {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .fox-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .fox-stat {
+      padding: 1.5rem;
+      border: 1px solid rgba(244, 244, 242, 0.08);
+      text-align: center;
+    }
+
+    .fox-stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 0.25rem;
+    }
+
+    .fox-stat-desc {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .fox-industries {
+      margin-top: 1rem;
+      padding: 1.5rem;
+      background: rgba(244, 244, 242, 0.03);
+      border: 1px solid rgba(244, 244, 242, 0.06);
+    }
+
+    .fox-industries-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+    }
+
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .industry-tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgba(244, 244, 242, 0.1);
+      color: var(--text-body);
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      text-align: center;
+      padding: 8rem 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-section .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .contact-section .section-subtitle-light {
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .contact-details {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-details a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem;
+      border-top: 1px solid rgba(244, 244, 242, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .footer-right {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .approach-step {
+        border-right: 1px solid rgba(244, 244, 242, 0.08);
+      }
+
+      .workshop-tracks {
+        grid-template-columns: 1fr;
+      }
+
+      .fox-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      section,
+      .section-light {
+        padding: 4rem 1.5rem;
+      }
+
+      .hero {
+        padding: 7rem 1.5rem 4rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fox-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content {
+      animation: fadeUp 0.7s ease-out both;
+    }
+
+    .hero-right {
+      animation: fadeUp 0.7s 0.2s ease-out both;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════ NAV ═══════ -->
+  <nav>
+    <a href="#" class="logo">
+      <svg class="logo-star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,0 14.6,8.2 23.4,8.2 16.4,13.3 19,21.5 12,16.4 5,21.5 7.6,13.3 0.6,8.2 9.4,8.2" />
+      </svg>
+      <span class="logo-text">hallmark <span>AI</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#workshops">Workshops</a></li>
+      <li><a href="#foxvalley">Fox Valley</a></li>
+    </ul>
+
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+
+    <button class="mobile-menu-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Appleton, Wisconsin</div>
+        <h1>AI education and consulting that actually <em>works.</em></h1>
+        <p class="hero-sub">
+          Hallmark AI helps communities and organizations understand, adopt, and operationalize artificial intelligence
+          in ways that are practical, trustworthy, and measurable.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Schedule a Conversation</a>
+          <a href="#services" class="btn-secondary">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat">
+          <div class="hero-stat-number">12+</div>
+          <div class="hero-stat-label">Years in AI engineering<br>& product leadership</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">2.3/5</div>
+          <div class="hero-stat-label">Average regional AI maturity —<br>the opportunity is now</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">76%</div>
+          <div class="hero-stat-label">Of organizations lack defined<br>AI success metrics</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section class="section-light" id="about">
+    <div class="section-inner">
+      <div class="section-label label-forest">About</div>
+      <div class="section-title" style="color: var(--charcoal);">Meet Anshuman Dewangan</div>
+      <div class="divider"></div>
+
+      <div class="about-grid">
+        <div class="about-content">
+          <p>
+            Anshuman is a Silicon Valley native bringing 12 years of hands-on AI engineering and product leadership to
+            Northeast Wisconsin. He currently serves as Lead AI Engineer at HealthEdge, where he works on enterprise
+            workflow automation, agentic platform development, and AI tooling enablement.
+          </p>
+          <p>
+            His work sits at the center of the current AI productivity challenge: moving beyond chatbots and text
+            generation into agentic tools and systems embedded in real business operations.
+          </p>
+          <p>
+            Before HealthEdge, Anshuman shaped strategy for a major new market vertical as a product manager at PayPal.
+            As a Google DeepMind Fellow, he earned a Master's in Computer Science from UC San Diego and completed his
+            undergraduate degree at UC Berkeley with a triple major in Business Administration, Statistics, and
+            Economics.
+          </p>
+
+          <div class="about-credentials">
+            <div class="credential">
+              <div class="credential-title">Lead AI Engineer, HealthEdge</div>
+              <div class="credential-detail">Enterprise workflow automation &amp; agentic platforms</div>
+            </div>
+            <div class="credential">
+              <div class="credential-title">Product Manager, PayPal</div>
+              <div class="credential-detail">New market vertical strategy</div>
+            </div>
+            <div class="credential">
+              <div class="credential-title">Google DeepMind Fellow</div>
+              <div class="credential-detail">M.S. Computer Science, UC San Diego</div>
+            </div>
+            <div class="credential">
+              <div class="credential-title">UC Berkeley</div>
+              <div class="credential-detail">B.A. Business Administration, Statistics &amp; Economics</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-sidebar">
+          <blockquote>
+            "The problem is no longer 'Can people use ChatGPT?' The real problem is helping people and organizations
+            understand where AI is useful, where it is risky, and how to integrate it into real workflows."
+          </blockquote>
+          <div class="attribution">— Anshuman Dewangan, Founder</div>
+
+          <div class="hallmark-origin">
+            <div class="origin-label">Why "Hallmark"?</div>
+            <p>
+              In January 2025, Anshuman — best man at his friend's wedding — met Hannah, maid of honor and sister of the
+              bride. Taking a chance on love, he moved to Appleton later that year, and now lives with her and her three
+              horses on her 40-acre farm. A real-life Hallmark story.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SERVICES ═══════ -->
+  <section id="services">
+    <div class="section-label label-yellow">Services</div>
+    <div class="section-title">Three pillars. One mission.</div>
+    <p class="section-subtitle section-subtitle-light">Clear education. Practical implementation. Human-centered AI
+      adoption — for communities, small businesses, and enterprises.</p>
+
+    <div class="services-grid">
+      <!-- Community Education -->
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--forest)" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="20" cy="14" r="6" />
+          <path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12" />
+          <path d="M14 14l6 4 6-4" />
+        </svg>
+        <div class="service-audience">Community Education</div>
+        <h3>AI Literacy for Everyone</h3>
+        <p>Help residents, students, educators, and civic leaders understand what AI is, how it works, and what it means
+          for daily life, work, and community.</p>
+        <ul class="service-list">
+          <li>What AI is and what it is not</li>
+          <li>How to use ChatGPT, Claude, and Gemini</li>
+          <li>Spotting hallucinations and misinformation</li>
+          <li>AI in schools, jobs, and local government</li>
+          <li>Energy, data centers, and sustainability</li>
+          <li>Workshops for families and retirees</li>
+        </ul>
+      </div>
+
+      <!-- Small Business -->
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--teal)" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="6" y="10" width="28" height="22" rx="2" />
+          <path d="M6 16h28" />
+          <path d="M14 4v6M26 4v6" />
+          <path d="M14 22h12M14 27h8" />
+        </svg>
+        <div class="service-audience">Small Business Consulting</div>
+        <h3>Practical AI for Local Business</h3>
+        <p>Hands-on help for local businesses to adopt AI tools that save time, reduce costs, and improve marketing,
+          operations, and customer service.</p>
+        <ul class="service-list">
+          <li>Marketing and social media content</li>
+          <li>Customer response drafting</li>
+          <li>Website copy and local SEO</li>
+          <li>Administrative automation</li>
+          <li>Internal knowledge bases</li>
+          <li>Choosing the right AI tools</li>
+        </ul>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="var(--copper)" stroke-width="1.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 4L36 14v16L20 36 4 26V14z" />
+          <path d="M20 4v14" />
+          <path d="M20 18L4 14" />
+          <path d="M20 18l16-4" />
+          <path d="M20 18v18" />
+        </svg>
+        <div class="service-audience">Enterprise Consulting</div>
+        <h3>AI Strategy &amp; Implementation</h3>
+        <p>Help organizations move beyond pilots to production — with workflow integration, governance, vendor
+          evaluation, and measurable ROI.</p>
+        <ul class="service-list">
+          <li>AI readiness assessments</li>
+          <li>Use case prioritization</li>
+          <li>Workflow integration design</li>
+          <li>Governance and risk management</li>
+          <li>Build-vs-buy guidance</li>
+          <li>Agentic system architecture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ APPROACH ═══════ -->
+  <section class="section-light" id="approach">
+    <div class="section-inner">
+      <div class="section-label label-teal">Approach</div>
+      <div class="section-title" style="color: var(--charcoal);">How we work</div>
+      <p class="section-subtitle section-subtitle-dark">Every engagement starts with understanding your actual situation
+        — not selling you a product. We meet you where you are and build from there.</p>
+
+      <div class="approach-grid">
+        <div class="approach-step">
+          <div class="step-number">01</div>
+          <h3 style="color: var(--charcoal);">Assess</h3>
+          <p style="color: var(--text-body-light);">Understand your current AI maturity, data readiness, workflows, and
+            organizational goals. No assumptions. No generic playbooks.</p>
+        </div>
+        <div class="approach-step">
+          <div class="step-number">02</div>
+          <h3 style="color: var(--charcoal);">Prioritize</h3>
+          <p style="color: var(--text-body-light);">Identify the highest-impact, lowest-risk use cases first. Not every
+            process needs AI. We help you find the ones that do.</p>
+        </div>
+        <div class="approach-step">
+          <div class="step-number">03</div>
+          <h3 style="color: var(--charcoal);">Implement</h3>
+          <p style="color: var(--text-body-light);">Integrate AI into real workflows with hands-on support. Build
+            governance, train your team, and establish measurement from day one.</p>
+        </div>
+        <div class="approach-step">
+          <div class="step-number">04</div>
+          <h3 style="color: var(--charcoal);">Measure</h3>
+          <p style="color: var(--text-body-light);">Track outcomes against defined success metrics. Refine, expand, and
+            build organizational AI capability over time — not dependency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ WORKSHOPS ═══════ -->
+  <section id="workshops">
+    <div class="section-label label-yellow">Workshop Topics</div>
+    <div class="section-title">Workshops and courses for every level</div>
+    <p class="section-subtitle section-subtitle-light">From AI literacy for first-time users to agentic system design
+      for engineering teams. All workshops are available for in-person delivery across Northeast Wisconsin.</p>
+
+    <div class="workshop-tracks">
+      <!-- Community Track -->
+      <div class="track">
+        <div class="track-label">Community &amp; Literacy</div>
+        <h3>Understand AI</h3>
+        <p class="track-desc">Plain-language education for residents, students, educators, parents, and civic leaders.
+        </p>
+        <ul class="topic-list">
+          <li>How AI Works</li>
+          <li>AI in the Real World</li>
+          <li>How to Use ChatGPT &amp; Claude</li>
+          <li>AI Safety, Bias &amp; Hallucinations</li>
+          <li>AI for Everyday Life</li>
+          <li>AI, Energy &amp; Data Centers</li>
+          <li>AI and the Future of Education</li>
+          <li>Human Judgment in the Age of AI</li>
+        </ul>
+      </div>
+
+      <!-- Small Business Track -->
+      <div class="track">
+        <div class="track-label">Small Business</div>
+        <h3>Apply AI</h3>
+        <p class="track-desc">Practical tools and workflows for local businesses, nonprofits, and professional services.
+        </p>
+        <ul class="topic-list">
+          <li>AI for Small Business Owners</li>
+          <li>AI for Marketing &amp; Social Media</li>
+          <li>AI for Sales &amp; Customer Follow-Up</li>
+          <li>Building AI-Powered Workflows</li>
+          <li>AI for Bookkeeping &amp; Admin</li>
+          <li>AI for Restaurants &amp; Retail</li>
+          <li>Choosing the Right AI Tools</li>
+          <li>AI for Proposals &amp; Invoices</li>
+        </ul>
+      </div>
+
+      <!-- Enterprise Track -->
+      <div class="track">
+        <div class="track-label">Enterprise &amp; Technical</div>
+        <h3>Operationalize AI</h3>
+        <p class="track-desc">Strategy, governance, and implementation for executives, IT leaders, and engineering
+          teams.</p>
+        <ul class="topic-list">
+          <li>AI Strategy for Executives</li>
+          <li>AI Readiness Assessment</li>
+          <li>AI Governance &amp; Risk Management</li>
+          <li>Measuring ROI from AI</li>
+          <li>Agentic AI &amp; Multi-Agent Systems</li>
+          <li>AI Engineering &amp; APIs</li>
+          <li>Build vs. Buy AI Decisions</li>
+          <li>AI Vendor Evaluation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="workshop-note">
+      <p>
+        Every workshop is designed for practical application — not slides full of buzzwords. Participants leave with
+        tools they can use immediately, whether that means writing better prompts, choosing the right AI platform, or
+        designing an enterprise governance framework. Custom workshops are available for chambers of commerce, industry
+        associations, and corporate teams.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════ FOX VALLEY ═══════ -->
+  <section class="section-light" id="foxvalley">
+    <div class="section-inner">
+      <div class="section-label label-forest">Local Roots</div>
+      <div class="section-title" style="color: var(--charcoal);">Built for the Fox Valley</div>
+      <div class="divider"></div>
+
+      <div class="fox-grid">
+        <div class="fox-content">
+          <p style="color: var(--text-body-light);">
+            Hallmark AI is based in Appleton, Wisconsin — and that's not incidental. The Fox Cities, Green Bay, Oshkosh,
+            and the broader Northeast Wisconsin region have a strong economic foundation in manufacturing, healthcare,
+            insurance, education, agriculture, and professional services. These industries stand to benefit enormously
+            from practical AI adoption.
+          </p>
+          <p style="color: var(--text-body-light);">
+            But most AI consultants and educators are based in coastal tech hubs, speaking a language that doesn't
+            always translate to a main street manufacturer, a family-owned clinic, or a regional nonprofit. Hallmark AI
+            bridges that gap — combining Silicon Valley technical depth with the pragmatism and trust that Midwest
+            organizations expect.
+          </p>
+          <p style="color: var(--text-body-light);">
+            Regional research shows that the Fox Cities' average AI maturity is 2.3 out of 5. The enthusiasm is there —
+            over half of local organizations are experimenting with AI pilots. What's missing is structured guidance,
+            governance, workforce training, and success metrics. That's exactly where Hallmark AI works.
+          </p>
+        </div>
+
+        <div>
+          <div class="fox-stats">
+            <div class="fox-stat">
+              <div class="fox-stat-value">45</div>
+              <div class="fox-stat-desc">Organizations assessed<br>across the Fox Valley</div>
+            </div>
+            <div class="fox-stat">
+              <div class="fox-stat-value">50%+</div>
+              <div class="fox-stat-desc">Running AI pilots<br>or experiments</div>
+            </div>
+            <div class="fox-stat">
+              <div class="fox-stat-value">1 in 4</div>
+              <div class="fox-stat-desc">Have formal AI<br>governance policies</div>
+            </div>
+            <div class="fox-stat">
+              <div class="fox-stat-value">35%</div>
+              <div class="fox-stat-desc">Report AI literacy<br>training programs</div>
+            </div>
+          </div>
+
+          <div class="fox-industries">
+            <div class="fox-industries-label">Key Regional Industries</div>
+            <div class="industry-tags">
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Manufacturing</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Healthcare</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Insurance</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Education</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Agriculture</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Logistics</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Financial Services</span>
+              <span class="industry-tag"
+                style="color: var(--text-body-light); border-color: rgba(30,31,35,0.15);">Professional Services</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CONTACT ═══════ -->
+  <section class="contact-section" id="contact">
+    <div class="section-label label-yellow" style="text-align: center;">Contact</div>
+    <div class="section-title">Ready to get started?</div>
+    <p class="section-subtitle section-subtitle-light" style="text-align: center;">
+      Whether you're a business owner exploring AI for the first time, an executive building an AI roadmap, or a
+      community group seeking a speaker — let's talk.
+    </p>
+
+    <div class="contact-actions">
+      <a href="mailto:email@hallmark-ai.com" class="btn-primary">Schedule a Conversation</a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+
+    <div class="contact-details">
+      <a href="mailto:email@hallmark-ai.com">email@hallmark-ai.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;<a
+        href="https://hallmark-ai.com">hallmark-ai.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;Appleton, WI
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <div class="footer-left">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#F5C400" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,0 14.6,8.2 23.4,8.2 16.4,13.3 19,21.5 12,16.4 5,21.5 7.6,13.3 0.6,8.2 9.4,8.2" />
+      </svg>
+      <span style="font-size: 0.85rem; font-weight: 600; color: var(--off-white);">hallmark <span
+          style="color: var(--yellow);">AI</span></span>
+    </div>
+    <div class="footer-right">
+      &copy; 2026 Hallmark AI · Appleton, Wisconsin
+    </div>
+  </footer>
+
+</body>
+
+</html>
