@@ -18,6 +18,8 @@
   <title>Hallmark AI — Clear Education. Practical Implementation. Human-Centered AI.</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet" />
@@ -1251,7 +1253,7 @@
       <img src="hallmark-logo-white.svg" alt="Hallmark AI Logo" class="logo-img" />
     </a>
 
-    <ul class="nav-links">
+    <ul class="nav-links" id="primary-navigation">
       <li><a href="#services">Services</a></li>
       <li><a href="#foxvalley">Fox Valley</a></li>
       <li><a href="#approach">Approach</a></li>
@@ -1262,7 +1264,7 @@
 
     <a href="#contact" class="nav-cta">Get in Touch</a>
 
-    <button class="mobile-menu-btn" aria-label="Menu">
+    <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -1692,6 +1694,7 @@
 
       const toggleMenu = () => {
         const isOpen = menuBtn.classList.toggle('active');
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
         navLinks.classList.toggle('active');
         
         if (isOpen) {
